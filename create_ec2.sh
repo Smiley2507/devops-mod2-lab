@@ -125,8 +125,12 @@ PUBLIC_IP=$(aws ec2 describe-instances \
   --instance-ids "$INSTANCE_ID" \
   --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
 
+# save the instance ID and public IP to a file for later cleanup
+echo "${INSTANCE_ID}" > .lab-state/instance_id.txt
+
 echo "-----------------------------------------"
 echo "Instance ID : ${INSTANCE_ID}"
 echo "Public IP   : ${PUBLIC_IP}"
 echo "SSH command : ssh -i ${KEY_PATH} ec2-user@${PUBLIC_IP}"
 echo "-----------------------------------------"
+    
