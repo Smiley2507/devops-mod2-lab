@@ -132,7 +132,7 @@ Two issues came up during testing. `~/.ssh` did not exist yet on a fresh WSL set
 
 **Screenshot**
 
-`![create_ec2.sh run](screenshots/ec2_creation.png)`
+![create_ec2.sh run](screenshots/ec2-creation.png)
 
 ### create_security_group.sh
 
@@ -173,7 +173,7 @@ SSH could be opened to `0.0.0.0/0`, but was restricted instead to the caller's o
 
 **Screenshot**
 
-`![create_security_group.sh run](screenshots/security_group_creation.png)`
+![create_security_group.sh run](screenshots/security_group_creation.png)
 
 ### create_s3_bucket.sh
 
@@ -206,7 +206,7 @@ Bucket names must be unique across all of AWS, so the name is built from the acc
 
 **Screenshot**
 
-`![create_s3_bucket.sh run](screenshots/create_s3_bucket.png)`
+![create_s3_bucket.sh run](screenshots/create_s3_bucket.png)
 
 ### cleanup_resources.sh
 
@@ -236,7 +236,7 @@ Resources are deleted in dependency order, since the instance has to finish term
 
 **Screenshot**
 
-`![cleanup_resources.sh run](screenshots/cleanup_resources.png)`
+![cleanup_resources.sh run](screenshots/cleanup_resources.png)
 
 ## Additional Scripts
 
@@ -263,6 +263,9 @@ flowchart TD
 
 `modify-instance-attribute --groups` replaces an instance's entire security group list rather than adding to it, which is what this script relies on. It hit an `UnauthorizedOperation` on `ec2:ModifyInstanceAttribute` during testing, a permission not covered by anything already granted for launching or terminating instances, and was added to the IAM policy once discovered.
 
+#### screeenshot
+
+![update_security_group.sh run](/screenshots/change_security_group.png)
 ### run_all.sh
 
 Runs the three provisioning scripts in order: security group, then EC2 instance, then S3 bucket.
@@ -284,10 +287,6 @@ flowchart TD
 **Key decisions**
 
 This script does not add new logic of its own. It calls the existing scripts in the order they depend on each other. Since each one already handles its own errors and idempotency, no extra handling was needed here.
-
-**Screenshot**
-
-`![run_all.sh run](screenshots/run_all.png)`
 
 ## State Management
 

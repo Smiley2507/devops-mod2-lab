@@ -39,7 +39,7 @@ fi
 echo "Using security group: ${SG_ID}"
 
 # ---------------------------------------------------------------------------
-#check if an instance with the same name already exists
+# check if an instance with the same name already exists
 # ---------------------------------------------------------------------------
 EXISTING_INSTANCE_ID=$(aws ec2 describe-instances \
   --profile "$PROFILE" \
