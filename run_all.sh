@@ -13,7 +13,7 @@ echo "Creating security group..."
 
 echo "==============================="
 echo "Creating EC2 instance..."
-./create_ec2.sh ${cat .lab-state/sg_id.txt}
+./create_ec2.sh $(cat .lab-state/sg_id.txt)
 
 echo "==============================="
 echo "Creating S3 bucket..."

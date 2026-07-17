@@ -40,31 +40,8 @@ Every script is idempotent, meaning running it twice does not create duplicate r
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    A[devops-lab-user IAM identity] --> B[create_security_group.sh]
-    B --> C[create_ec2.sh]
-    A --> D[create_s3_bucket.sh]
-    B -->|"sg_id.txt"| E["lab-state folder"]
-    C -->|"instance_id.txt"| E
-    D -->|"bucket_name.txt"| E
-    E --> F[cleanup_resources.sh]
-    F --> G[Everything torn down]
+![Architecture Diagram](architecture-diagram.png)
 
-    subgraph AWS Resources
-        H[EC2 Instance]
-        I[Security Group]
-        J[S3 Bucket]
-        K[Key Pair]
-    end
-
-    C --> H
-    C --> K
-    B --> I
-    D --> J
-```
-
-The `.lab-state` folder is how the scripts pass information to each other. Each script writes what it created into a small text file, and later scripts read from there.
 
 ## Prerequisites
 
