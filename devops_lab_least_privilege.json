@@ -6,7 +6,7 @@
 			"Effect": "Allow",
 			"Action": [
 				"ec2:CreateKeyPair",
-				"ec2:DeleteKeyPair",
+				"ec2:DeleteKeyPair",	
 				"ec2:DescribeKeyPairs"
 			],
 			"Resource": "*"

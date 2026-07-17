@@ -48,12 +48,6 @@ aws s3api put-public-access-block \
   --public-access-block-configuration \
   BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
 
-echo "Enabling default server-side encryption (SSE-S3)..."
-aws s3api put-bucket-encryption \
-  --profile "$PROFILE" --bucket "$BUCKET_NAME" \
-  --server-side-encryption-configuration \
-  '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
-
 # ---------------------------------------------------------------------------
 # Bucket policy: deny any request that isn't over HTTPS.
 # This does not expose the bucket publicly — it's a baseline security
